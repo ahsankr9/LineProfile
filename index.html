@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@300;500;600;700&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* CSS Variables for theming */
         :root {
@@ -60,9 +61,9 @@
         /* Header styles - Changed to Light Greenish */
         h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 2.2em; 
-            font-weight: 800; 
-            color: var(--primary-color); /* Light Greenish Color */
+            font-size: 1.8em; 
+            font-weight: 700; 
+            color: #312AF4; /* Light Greenish Color */
             margin-bottom: 8px; 
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15); 
             animation: fadeInDown 1s ease-out;
@@ -89,7 +90,7 @@
             font-weight: bold;
             color: var(--signature-color); 
             margin-bottom: 20px; 
-            font-size: 1.2em; 
+            font-size: 0.9em; 
             animation: fadeIn 1.5s ease-out;
         }
         
@@ -144,7 +145,7 @@
         /* Sub-headings within cards - Changed to Deep Purple */
         h2 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.6em; 
+            font-size: 1.0em; 
             font-weight: 700; 
             color: var(--heading-color); /* Deep Purple */
             margin-top: 0;
@@ -170,8 +171,8 @@
         label {
             display: block;
             margin-bottom: 8px; 
-            font-weight: 700; 
-            font-size: 1.0em; 
+            font-weight: 600; 
+            font-size: 0.9em; 
             color: var(--text-light);
         }
 
@@ -188,7 +189,7 @@
             background-color: var(--bg-light); 
             color: var(--text-light);
             font-family: 'Poppins', sans-serif;
-            font-size: 0.95em; 
+            font-size: 0.85em; 
             transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
             box-sizing: border-box;
             height: 40px; 
@@ -258,22 +259,49 @@
             padding-top: 15px;
         }
 
-        /* Button styles */
+        /* Button styles - Font Changed to Montserrat */
         .btn {
             padding: 10px 20px; 
             border: none;
             border-radius: 8px;
             cursor: pointer;
+            font-family: 'Montserrat', sans-serif; /* Changed font */
             font-weight: 700;
             font-size: 0.9em; 
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Button click animation */
+        @keyframes buttonClick {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+
+        .btn-clicked {
+            animation: buttonClick 0.3s ease;
+        }
+
+        /* Copy button success animation */
+        .btn-copy-success {
+            background-color: #2ecc71 !important;
         }
 
         /* Specific button colors */
@@ -332,6 +360,29 @@
             transform: translateX(25px); 
             background-color: var(--card-dark);
         }
+
+        /* Toast notification for copy */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: #2ecc71;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -374,8 +425,12 @@
             </div>
 
             <div class="buttons">
-                <button class="btn btn-generate" onclick="generateScript()">Generate</button>
-                <button class="btn btn-clear" onclick="clearFields()">Clear</button>
+                <button class="btn btn-generate" onclick="generateScript()">
+                    <i class="fas fa-cogs"></i> Generate
+                </button>
+                <button class="btn btn-clear" onclick="clearFields()">
+                    <i class="fas fa-broom"></i> Clear
+                </button>
             </div>
         </div>
 
@@ -383,13 +438,25 @@
             <h2><span role="img" aria-label="script">📜</span> GENERATED SCRIPT</h2>
             <textarea id="output" readonly placeholder="Your generated script will appear here..."></textarea>
             <div class="buttons">
-                <button class="btn btn-copy" onclick="copyScript()">Copy</button>
+                <button class="btn btn-copy" onclick="copyScript()">
+                    <i class="far fa-copy"></i> Copy
+                </button>
             </div>
-            </div>
+        </div>
     </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast">Copied to clipboard!</div>
 
 <script>
     function generateScript() {
+        // Add click animation
+        const generateBtn = document.querySelector('.btn-generate');
+        generateBtn.classList.add('btn-clicked');
+        setTimeout(() => {
+            generateBtn.classList.remove('btn-clicked');
+        }, 300);
+
         const olt = document.getElementById("oltName").value;
         // Use default '10' for profileId if empty
         const profileId = document.getElementById("profileId").value.trim() || "10";
@@ -441,6 +508,13 @@
     }
 
     function clearFields() {
+        // Add click animation
+        const clearBtn = document.querySelector('.btn-clear');
+        clearBtn.classList.add('btn-clicked');
+        setTimeout(() => {
+            clearBtn.classList.remove('btn-clicked');
+        }, 300);
+
         document.getElementById("profileId").value = "";
         document.getElementById("gemMap").value = "1";
         document.getElementById("vlan1").value = "";
@@ -452,16 +526,59 @@
 
     function copyScript() {
         const output = document.getElementById("output");
+        
+        if (!output.value.trim()) {
+            showToast("No script to copy!", "error");
+            return;
+        }
+
+        // Add click animation and success state
+        const copyBtn = document.querySelector('.btn-copy');
+        copyBtn.classList.add('btn-clicked');
+        copyBtn.classList.add('btn-copy-success');
+        
+        // Change button text and icon temporarily
+        const originalHTML = copyBtn.innerHTML;
+        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        
         output.select();
-        output.setSelectionRange(0, 99999); // For mobile devices
-        document.execCommand("copy"); // Deprecated but widely supported in iframes
-        // Using alert for simplicity, consider a custom modal in a real app
-        alert("Script copied to clipboard!");
+        output.setSelectionRange(0, 99999);
+        
+        // Use modern Clipboard API
+        navigator.clipboard.writeText(output.value).then(() => {
+            showToast("Script copied to clipboard!");
+        }).catch(err => {
+            // Fallback for older browsers
+            document.execCommand("copy");
+            showToast("Script copied to clipboard!");
+        });
+
+        // Reset button after 2 seconds
+        setTimeout(() => {
+            copyBtn.classList.remove('btn-clicked');
+            copyBtn.classList.remove('btn-copy-success');
+            copyBtn.innerHTML = originalHTML;
+        }, 2000);
+    }
+
+    function showToast(message, type = "success") {
+        const toast = document.getElementById("toast");
+        toast.textContent = message;
+        
+        // Set background color based on type
+        if (type === "error") {
+            toast.style.backgroundColor = "#e74c3c";
+        } else {
+            toast.style.backgroundColor = "#2ecc71";
+        }
+        
+        toast.classList.add("show");
+        
+        // Hide toast after 3 seconds
+        setTimeout(() => {
+            toast.classList.remove("show");
+        }, 3000);
     }
 </script>
 </body>
 </html>
-
-
-
-
