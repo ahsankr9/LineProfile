@@ -9,37 +9,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@300;500;600;700&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CSS Variables for theming */
         :root {
-            --bg-light: #f3e5f5; /* Light Purple Background */
-            --bg-dark: #1a202c; 
-            --card-light: #ffffff; 
-            --card-dark: #2d3748; 
-            --text-light: #2d3748; 
-            --text-dark: #e2e8f0; 
-            --primary-color: #356B14; /* Greenish for H1 */
-            --secondary-color: #4299e1; 
-            --accent-color: #ffb74d; /* Orange Accent */
-            --border-light: #e1bee7; /* Light Purple Border */
-            --border-dark: #4a5568; 
-            --code-bg-light: #fcf6fd; 
-            --code-bg-dark: #1a202c; 
-            
-            --button-generate: #3182ce; /* Blue */
-            --button-clear: #e53e3e;    /* Red */
-            --button-copy: #1f855d;     /* Deep Green */
-
-            --shadow-light: 0 8px 20px rgba(0, 0, 0, 0.1); 
+            --bg-light: #f3e5f5;
+            --bg-dark: #1a202c;
+            --card-light: #ffffff;
+            --card-dark: #2d3748;
+            --text-light: #2d3748;
+            --text-dark: #e2e8f0;
+            --primary-color: #356B14;
+            --secondary-color: #4299e1;
+            --accent-color: #ffb74d;
+            --border-light: #e1bee7;
+            --border-dark: #4a5568;
+            --code-bg-light: #fcf6fd;
+            --code-bg-dark: #1a202c;
+            --button-generate: #3182ce;
+            --button-clear: #e53e3e;
+            --button-copy: #1f855d;
+            --shadow-light: 0 8px 20px rgba(0, 0, 0, 0.1);
             --shadow-dark: 0 8px 20px rgba(0, 0, 0, 0.35);
-            --signature-color: #800080; /* Purple */
-            --heading-color: #7b1fa2; /* Deep Purple for H2 */
+            --signature-color: #800080;
+            --heading-color: #7b1fa2;
         }
 
         body {
             font-family: 'Poppins', Trebuchet MS;
             margin: 0;
-            padding: 15px; 
-            background-color: var(--bg-light); 
+            padding: 15px;
+            background-color: var(--bg-light);
             color: var(--text-light);
             transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
             display: flex;
@@ -47,7 +44,7 @@
             align-items: center;
             min-height: 100vh;
             box-sizing: border-box;
-            font-size: 0.95em; 
+            font-size: 0.95em;
         }
         body.dark {
             background-color: var(--bg-dark);
@@ -55,19 +52,19 @@
         }
         h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.8em; 
-            font-weight: 700; 
+            font-size: 1.8em;
+            font-weight: 700;
             color: #312AF4;
-            margin-bottom: 8px; 
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15); 
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
             animation: fadeInDown 1s ease-out;
         }
         h1::after {
             content: '';
             display: block;
-            width: 70px; 
-            height: 3px; 
-            background-color: var(--accent-color); 
+            width: 70px;
+            height: 3px;
+            background-color: var(--accent-color);
             margin: 5px auto 0;
             border-radius: 1.5px;
         }
@@ -78,9 +75,9 @@
         .signature {
             font-family: 'Trebuchet MS', sans-serif;
             font-weight: bold;
-            color: var(--signature-color); 
-            margin-bottom: 20px; 
-            font-size: 0.9em; 
+            color: var(--signature-color);
+            margin-bottom: 20px;
+            font-size: 0.9em;
             animation: fadeIn 1.5s ease-out;
         }
         @keyframes fadeIn {
@@ -90,20 +87,20 @@
         .container {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px; 
+            gap: 20px;
             width: 100%;
-            max-width: 900px; 
+            max-width: 900px;
             padding: 0 10px;
         }
-        @media (min-width: 768px) { 
+        @media (min-width: 768px) {
             .container {
                 grid-template-columns: 1fr 1fr;
             }
         }
         .card {
             background-color: var(--card-light);
-            padding: 25px; 
-            border-radius: 15px; 
+            padding: 25px;
+            border-radius: 15px;
             box-shadow: var(--shadow-light);
             transition: background-color 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
             display: flex;
@@ -115,7 +112,7 @@
             box-shadow: var(--shadow-dark);
         }
         .card:hover {
-            transform: translateY(-3px); 
+            transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
         @keyframes fadeInUp {
@@ -124,13 +121,13 @@
         }
         h2 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.0em; 
-            font-weight: 700; 
+            font-size: 1.0em;
+            font-weight: 700;
             color: var(--heading-color);
             margin-top: 0;
-            margin-bottom: 15px; 
+            margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 2px solid var(--border-light); 
+            border-bottom: 2px solid var(--border-light);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -140,13 +137,13 @@
             border-bottom-color: var(--border-dark);
         }
         .form-group {
-            margin-bottom: 15px; 
+            margin-bottom: 15px;
         }
         label {
             display: block;
-            margin-bottom: 8px; 
-            font-weight: 600; 
-            font-size: 0.9em; 
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9em;
             color: var(--text-light);
         }
         body.dark label {
@@ -154,16 +151,16 @@
         }
         select, input[type="text"], input[type="number"] {
             width: 100%;
-            padding: 10px 15px; 
-            border-radius: 8px; 
+            padding: 10px 15px;
+            border-radius: 8px;
             border: 1px solid var(--border-light);
-            background-color: var(--bg-light); 
+            background-color: var(--bg-light);
             color: var(--text-light);
             font-family: 'Poppins', sans-serif;
-            font-size: 0.85em; 
+            font-size: 0.85em;
             transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
             box-sizing: border-box;
-            height: 40px; 
+            height: 40px;
         }
         body.dark select, body.dark input[type="text"], body.dark input[type="number"] {
             border-color: var(--border-dark);
@@ -173,32 +170,42 @@
         select:focus, input:focus, textarea:focus {
             outline: none;
             border-color: var(--heading-color);
-            box-shadow: 0 0 0 3px rgba(123, 31, 162, 0.3); 
+            box-shadow: 0 0 0 3px rgba(123, 31, 162, 0.3);
         }
         body.dark select:focus, body.dark input:focus, body.dark textarea:focus {
             border-color: var(--secondary-color);
             box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3);
         }
+
+        /* Gem Map row: hidden for VSOL, visible for CDATA */
         .profile-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px; 
+            gap: 15px;
         }
+        #gemMapGroup {
+            display: block; /* visible by default (CDATA is default) */
+            transition: opacity 0.3s;
+        }
+        #gemMapGroup.hidden {
+            display: none;
+        }
+
         .vlan-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); 
-            gap: 10px; 
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 10px;
         }
         textarea {
             width: 100%;
-            height: 220px; 
-            padding: 15px; 
+            height: 220px;
+            padding: 15px;
             border-radius: 8px;
             border: 1px solid var(--border-light);
             font-family: 'Roboto Mono', monospace;
-            font-size: 0.9em; 
-            font-weight: 700; 
-            background-color: var(--code-bg-light); 
+            font-size: 0.9em;
+            font-weight: 700;
+            background-color: var(--code-bg-light);
             color: var(--text-light);
             resize: vertical;
             transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
@@ -213,18 +220,18 @@
         .buttons {
             display: flex;
             justify-content: flex-end;
-            gap: 15px; 
+            gap: 15px;
             margin-top: auto;
             padding-top: 15px;
         }
         .btn {
-            padding: 10px 20px; 
+            padding: 10px 20px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: 0.9em; 
+            font-size: 0.9em;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -239,40 +246,25 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
         }
-        .btn:active {
-            transform: translateY(0);
-        }
+        .btn:active { transform: translateY(0); }
         @keyframes buttonClick {
             0% { transform: scale(1); }
             50% { transform: scale(0.95); }
             100% { transform: scale(1); }
         }
-        .btn-clicked {
-            animation: buttonClick 0.3s ease;
-        }
-        .btn-copy-success {
-            background-color: #2ecc71 !important;
-        }
-        .btn-generate {
-            background-color: var(--button-generate);
-            color: white;
-        }
-        .btn-generate:hover { background-color: #2b6cb0; } 
-        .btn-clear {
-            background-color: var(--button-clear);
-            color: white;
-        }
-        .btn-clear:hover { background-color: #c53030; } 
-        .btn-copy {
-            background-color: var(--button-copy);
-            color: white;
-        }
-        .btn-copy:hover { background-color: #1a6d4d; } 
+        .btn-clicked { animation: buttonClick 0.3s ease; }
+        .btn-copy-success { background-color: #2ecc71 !important; }
+        .btn-generate { background-color: var(--button-generate); color: white; }
+        .btn-generate:hover { background-color: #2b6cb0; }
+        .btn-clear { background-color: var(--button-clear); color: white; }
+        .btn-clear:hover { background-color: #c53030; }
+        .btn-copy { background-color: var(--button-copy); color: white; }
+        .btn-copy:hover { background-color: #1a6d4d; }
         .dark-mode-toggle {
             position: fixed;
-            top: 15px; 
-            right: 15px; 
-            width: 50px; 
+            top: 15px;
+            right: 15px;
+            width: 50px;
             height: 25px;
             background-color: var(--border-light);
             border-radius: 25px;
@@ -290,7 +282,7 @@
         }
         .dark-mode-toggle::before {
             content: '';
-            width: 21px; 
+            width: 21px;
             height: 21px;
             background-color: var(--card-light);
             border-radius: 50%;
@@ -298,7 +290,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.25);
         }
         body.dark .dark-mode-toggle::before {
-            transform: translateX(25px); 
+            transform: translateX(25px);
             background-color: var(--card-dark);
         }
         .toast {
@@ -334,20 +326,20 @@
             <h2><span role="img" aria-label="settings">⚙️</span> INPUTS</h2>
             <div class="form-group">
                 <label for="oltName">OLT Name</label>
-                <select id="oltName">
+                <select id="oltName" onchange="toggleGemMap()">
                     <option value="cdata16">CDATA GPON 16-PON</option>
                     <option value="cdata8">CDATA GPON 8-PON</option>
                     <option value="vsol">VSOL/ATOP</option>
                 </select>
             </div>
-            
+
             <div class="profile-group">
                 <div class="form-group">
                     <label for="profileId">Line Profile ID</label>
                     <input type="text" id="profileId" placeholder="e.g., 10">
                 </div>
-                <div class="form-group">
-                    <label for="gemMap">Gem Map (VSOL only)</label>
+                <div class="form-group" id="gemMapGroup">
+                    <label for="gemMap">Gem Map</label>
                     <input type="number" id="gemMap" min="1" max="8" value="1">
                 </div>
             </div>
@@ -386,47 +378,50 @@
     <div class="toast" id="toast">Copied to clipboard!</div>
 
 <script>
+    // Show/hide Gem Map based on OLT selection
+    function toggleGemMap() {
+        const olt = document.getElementById("oltName").value;
+        const gemMapGroup = document.getElementById("gemMapGroup");
+        if (olt === "vsol") {
+            gemMapGroup.classList.add("hidden");
+        } else {
+            gemMapGroup.classList.remove("hidden");
+        }
+    }
+
     function generateScript() {
         const generateBtn = document.querySelector('.btn-generate');
         generateBtn.classList.add('btn-clicked');
-        setTimeout(() => {
-            generateBtn.classList.remove('btn-clicked');
-        }, 300);
+        setTimeout(() => generateBtn.classList.remove('btn-clicked'), 300);
 
         const olt = document.getElementById("oltName").value;
         const profileId = document.getElementById("profileId").value.trim() || "10";
-        // gemMap is still used only for VSOL, for CDATA it is ignored now
         const gemMap = Math.min(Math.max(parseInt(document.getElementById("gemMap").value.trim() || "1"), 1), 8);
-        
-        // collect all four VLAN inputs
+
         const vlanInputs = [
             document.getElementById("vlan1").value.trim(),
             document.getElementById("vlan2").value.trim(),
             document.getElementById("vlan3").value.trim(),
             document.getElementById("vlan4").value.trim()
         ];
-        
-        // filter out empty strings to get active VLANs
         const vlans = vlanInputs.filter(v => v !== '');
 
         let script = "";
 
         if (olt === "vsol") {
-            // ---------- VSOL (unchanged) ----------
+            // ---------- VSOL ----------
             const vlanString = vlans.join(",");
             let servicePorts = '';
             vlans.forEach((v, i) => {
                 servicePorts += `service-port ${i + 1} gemport 1 uservlan ${v} vlan ${v}\n`;
             });
             script = `profile line id ${profileId}\ntcont 1 name tcont_1 dba MAX_BW\ngemport 1 tcont 1\nservice 1 gemport 1 vlan ${vlanString}\n${servicePorts}commit\nexit`;
-        
+
         } else if (olt === "cdata16") {
-            // ---------- CDATA 16-PON : each VLAN gets a separate gem mapping (index 1..n) ----------
-            // profile line with "gpon" keyword
+            // ---------- CDATA 16-PON : index starts from gemMap, increments per VLAN ----------
             let gemMappings = '';
             vlans.forEach((vlan, idx) => {
-                // mapping index starts at 1
-                gemMappings += `gem mapping 1 ${idx + 1} vlan ${vlan}\n`;
+                gemMappings += `gem mapping 1 ${gemMap + idx} vlan ${vlan}\n`;
             });
             script = `ont-lineprofile gpon profile-id ${profileId}\n` +
                      `tcont 1 dba-profile-id 30\n` +
@@ -435,12 +430,12 @@
                      `mapping-mode vlan\n` +
                      `commit\n` +
                      `exit`;
-        
+
         } else if (olt === "cdata8") {
-            // ---------- CDATA 8-PON : same mapping logic, but profile line without "gpon" ----------
+            // ---------- CDATA 8-PON : index starts from gemMap, increments per VLAN ----------
             let gemMappings = '';
             vlans.forEach((vlan, idx) => {
-                gemMappings += `gem mapping 1 ${idx + 1} vlan ${vlan}\n`;
+                gemMappings += `gem mapping 1 ${gemMap + idx} vlan ${vlan}\n`;
             });
             script = `ont-lineprofile profile-id ${profileId}\n` +
                      `tcont 1 dba-profile-id 30\n` +
@@ -457,9 +452,7 @@
     function clearFields() {
         const clearBtn = document.querySelector('.btn-clear');
         clearBtn.classList.add('btn-clicked');
-        setTimeout(() => {
-            clearBtn.classList.remove('btn-clicked');
-        }, 300);
+        setTimeout(() => clearBtn.classList.remove('btn-clicked'), 300);
 
         document.getElementById("profileId").value = "";
         document.getElementById("gemMap").value = "1";
@@ -472,22 +465,18 @@
 
     function copyScript() {
         const output = document.getElementById("output");
-        
         if (!output.value.trim()) {
             showToast("No script to copy!", "error");
             return;
         }
-
         const copyBtn = document.querySelector('.btn-copy');
         copyBtn.classList.add('btn-clicked');
         copyBtn.classList.add('btn-copy-success');
-        
         const originalHTML = copyBtn.innerHTML;
         copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-        
+
         output.select();
         output.setSelectionRange(0, 99999);
-        
         navigator.clipboard.writeText(output.value).then(() => {
             showToast("Script copied to clipboard!");
         }).catch(() => {
@@ -507,9 +496,7 @@
         toast.textContent = message;
         toast.style.backgroundColor = type === "error" ? "#e74c3c" : "#2ecc71";
         toast.classList.add("show");
-        setTimeout(() => {
-            toast.classList.remove("show");
-        }, 3000);
+        setTimeout(() => toast.classList.remove("show"), 3000);
     }
 </script>
 </body>
